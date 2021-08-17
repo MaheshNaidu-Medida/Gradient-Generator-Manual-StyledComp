@@ -7,6 +7,7 @@ import {
   UnorderedList,
   FlexContainer,
   GenerateButton,
+  Input,
 } from './styledComponents'
 
 import GradientDirectionItem from '../GradientDirectionItem'
@@ -20,71 +21,73 @@ const gradientDirectionsList = [
 
 class GradientGenerator extends Component {
   state = {
-    firstColorText: #8ae323,
-    secondColorText: #014f7b,
-    firstColor: #8ae323,
-    secondColor: #014f7b,
+    firstColor: '#8ae323',
+    secondColor: '#014f7b',
     currentDirection: gradientDirectionsList[0].value,
+    gradientValue: `to ${gradientDirectionsList[0].value}, #8ae323, #014f7b`,
   }
 
   onClickGenerate = () => {
-      const {firstColorText, secondColorText} = this.state
-    this.setState({firstColor: firstColorText, secondColor: secondColorText})
+    const {currentDirection, firstColor, secondColor} = this.state
+    this.setState({
+      gradientValue: `to ${currentDirection}, ${firstColor}, ${secondColor}`,
+    })
   }
 
-  onClickDirection = (id) => {
-      const directionObject = gradientDirectionsList.find(each => each.directionId === id)
-      const direction = directionObject.value
-      this.setState({currentDirection: direction})
+  onClickDirection = id => {
+    const directionObject = gradientDirectionsList.find(
+      each => each.directionId === id,
+    )
+    const direction = directionObject.value
+    this.setState({currentDirection: direction})
   }
 
-  onClickFirstColor = (event) => {
-    this.setState({firstColorText: event.target.value})
+  onClickFirstColor = event => {
+    this.setState({firstColor: event.target.value})
   }
 
-  onClickSecondColor = (event) => {
-    this.setState({secondColorText: event.target.value})
+  onClickSecondColor = event => {
+    this.setState({secondColor: event.target.value})
   }
 
   render() {
-    const {firstColor, secondColor, currentDirection, firstColorText, secondColorText} = this.state
+    const {
+      firstColor,
+      secondColor,
+      currentDirection,
+      gradientValue,
+    } = this.state
 
     return (
       <GradientGeneratorContainer
-      data-testid = "gradientGenerator"
-        firstColor={firstColor}
-        secondColor={secondColor}
-        currentDirection={currentDirection}
+        data-testid="gradientGenerator"
+        gradientValue={gradientValue}
       >
         <ContentContainer>
           <Heading>Generate a CSS Color Gradient</Heading>
-          <Text description>
-            Choose Direction
-          </Text>
+          <Text description>Choose Direction</Text>
           <UnorderedList>
             {gradientDirectionsList.map(each => (
               <GradientDirectionItem
                 key={each.directionId}
                 currentDirection={currentDirection}
                 details={each}
-                onClickDirection = {this.onClickDirection}
+                onClickDirection={this.onClickDirection}
               />
             ))}
           </UnorderedList>
-          <Text description>
-            Pick the Colors
-          </Text>
+          <Text description>Pick the Colors</Text>
           <FlexContainer>
-            <Text>{firstColorText}</Text>
-            <Text>{secondColorText}</Text>
+            <Text>{firstColor}</Text>
+            <Text>{secondColor}</Text>
           </FlexContainer>
           <FlexContainer>
-            <input
+            <Input
               type="color"
               value={firstColor}
               onChange={this.onClickFirstColor}
             />
-            <input
+            <Input
               type="color"
               value={secondColor}
               onChange={this.onClickSecondColor}

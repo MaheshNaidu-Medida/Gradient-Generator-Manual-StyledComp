@@ -1,4 +1,4 @@
-import {DirectionButton} from './styledComponents'
+import {DirectionButton, ListItem} from './styledComponents'
 
 const GradientDirectionItem = props => {
   const {details, onClickDirection, currentDirection} = props
@@ -9,7 +9,7 @@ const GradientDirectionItem = props => {
   }
 
   return (
-    <li>
+    <ListItem>
       <DirectionButton
         type="button"
         onClick={onClickButton}
@@ -17,7 +17,7 @@ const GradientDirectionItem = props => {
       >
         {displayText}
       </DirectionButton>
-    </li>
+    </ListItem>
   )
 }
 export default GradientDirectionItem
