@@ -69,8 +69,9 @@ export const GenerateButton = styled.button`
   font-family: 'Roboto';
   font-size: 12px;
   font-weight: 500;
-  margin-top: 20px;
+  margin-top: 40px;
   cursor: pointer;
+  outline: none;
   @media screen and (min-width: 768px) {
     width: 120px;
     font-size: 16px;
@@ -78,11 +79,14 @@ export const GenerateButton = styled.button`
     padding-right: 13px;
     padding-top: 8px;
     padding-bottom: 8px;
-    margin-top: 30px;
   }
 `
 export const Input = styled.input`
   border: 1px solid #334155;
   height: 50px;
   width: 90px;
+  margin-left: 7px;
+  margin-right: 7px;
+  cursor: pointer;
+  outline: none;
 `

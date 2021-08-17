@@ -12,6 +12,8 @@ export const DirectionButton = styled.button`
   font-size: 14px;
   font-weight: 500;
   opacity: ${props => (props.highlightDirection ? 1 : 0.5)};
+  cursor: pointer;
+  outline: none;
   @media screen and (min-width: 768px) {
     height: 50px;
   }
